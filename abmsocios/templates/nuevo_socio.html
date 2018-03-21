@@ -1,0 +1,110 @@
+{% extends 'base_generic.html' %}{% load static %}
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{% static 'abmsocios/css/nuevo_socio.css' %}">
+{% endblock %}
+{% block sectionHeader %}
+    <i class="ui add user icon"></i>
+    Nuevo Socio
+{% endblock %}
+
+
+{% block content %}
+<div class="ui grid ">
+    <div class="twelve wide centered column">
+        <div class="ui container center aligned">
+            <img class='ui small avatar image' id='perfil' src='../../media/manAvatar.jpg' alt='foto de perfil' data-content='Hace click para cargar una foto de perfil.', data-position='bottom center'/>
+            <a class="ui pointing blue basic label tablet-hide small-hide large-hide">Hace click para agregar una foto.</a>
+        </div>            
+
+
+    <form action="" method="POST" enctype="multipart/form-data" id="crearSocio" class="ui form">
+        {% csrf_token %}
+    
+        <div class="field">            
+            {{ form.foto_perfil.errors }}
+            {{ form.foto_perfil }}
+        </div>
+        <div class="two fields">
+            <div class="field">
+                {{ form.nombre.errors }}
+                {{ form.nombre.label_tag }}
+                {{ form.nombre }}
+            </div>
+            <div class="field">
+                {{ form.apellido.errors }}
+                {{ form.apellido.label_tag }}
+                {{ form.apellido }}
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                {{ form.documento.errors }}
+                {{ form.documento.label_tag }}
+                {{ form.documento }}
+            </div>
+            <div class="field">
+                {{ form.fecha_nacimiento.errors }}
+                {{ form.fecha_nacimiento.label_tag }}
+                {{ form.fecha_nacimiento }}
+            </div>
+        </div>
+        <div class="two fields">
+        <div class="field">
+            {{ form.correo.errors }}
+            {{ form.correo.label_tag }}
+            {{ form.correo }}
+        </div>
+        <div class="field">
+                {{ form.sexo.errors }}
+                {{ form.sexo.label_tag }}
+                {{ form.sexo }}
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                {{ form.fecha_inscripcion.errors }}
+                {{ form.fecha_inscripcion.label_tag }}
+                {{ form.fecha_inscripcion }}
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    {{ form.apto_fisico.errors }}
+                    {{ form.apto_fisico.label_tag }}
+                    <input type="checkbox" name="apto_fisico" id="id_apto_fisico">
+                </div>
+            </div>
+        </div>
+        <div class="two fields">
+            
+            <div class="field">
+                {{ form.fecha_apto.errors }}
+                {{ form.fecha_apto.label_tag }}
+                {{ form.fecha_apto }}
+            </div>
+
+            
+            <div class="inline field">
+                <div class="ui toggle checkbox">
+                    {{ form.estado.errors }}
+                    {{ form.estado.label_tag }}
+                    <input type="checkbox" name="estado" id="id_estado">
+                </div>
+            </div>
+        </div>
+        <div class="ui error message">
+            
+        </div>
+        <div class="ui container center aligned">
+            <input type="submit" class="ui button" value="Crear" id='crear_usuario'>
+        </div>
+    </form>
+    </div>
+</div>
+    
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'abmsocios/js/nuevo_socio.js' %}"></script>
+{% endblock %}

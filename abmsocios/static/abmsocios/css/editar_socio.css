@@ -1,0 +1,47 @@
+#id_telefono_set-0-DELETE,
+#id_telefono_set-1-DELETE,
+#id_telefono_set-2-DELETE {
+    display: none;
+}
+
+#remove-button {
+    position: relative;
+}
+
+#test {
+    position: absolute;
+    top: 40%;
+    color: white;
+}
+
+.checkbox{
+    position: absolute;
+    left: 25%;
+    top: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .checkbox {
+        left: 25%;
+        top: 25%;
+        bottom: 10% 
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 990px) {
+    .checkbox {
+        left: 0%;
+    }
+}
+
+
+@media only screen and (max-width: 768px){
+    #remove-button {
+        position: static;
+    }
+    #test {
+        position: static;
+    }
+
+}
+

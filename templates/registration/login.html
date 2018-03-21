@@ -1,0 +1,63 @@
+{% extends 'login_generic.html' %}
+{% load static %}
+{% block title %}<title>Login</title>{% endblock %}
+{% block style %} <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" > {% endblock %}
+{% block content %}
+
+<h3 class="app header">GYM APP</h3>
+
+
+    {% if form.errors %}
+        <div class="ui tiny error message hidden">
+            <div class="header">Usuario o contaseña incorrecto</div>
+            <p>Por favor ingresa tus credenciales nuevamente. </p>
+        </div>
+    {% endif%}
+      {% if next %}
+        {% if user.is_authenticated %}
+            <div class="ui tiny error message hidden">
+                <div class="header">Permisos insuficientes</div>
+                <p>Tu cuenta no tiene permisos para acceder a este sitio. 
+                    Por favor ingresa una cuenta que los tenga.
+                </p>
+            </div>
+        
+        {% endif %}
+    {% endif %}
+
+
+    <div class="ui raised segment"> 
+        <form class="ui large form" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+                <p>Ingresa tus credenciales</p>               
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>    
+                        <input type="text" name="username" id="username" placeholder="Nombre de Usuario">   
+                        <!--<td>{{ form.username }}</td>-->
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" id="password" placeholder="Contraseña">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <input class="positive ui button" type="submit" value="login">
+                    <input type="hidden" name="next" value="{{ next }}">
+                </div>
+
+                <p><a href="{% url 'password_reset' %}">Olvidaste tu clave?</a></p> 
+        </form>
+    </div>
+
+
+
+
+    
+
+{% endblock %}
+
+{% block javascript %} <script type="text/javascript" src="{% static 'js/login.js' %}"></script> {% endblock %}

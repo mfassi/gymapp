@@ -1,0 +1,101 @@
+ {% extends "base_generic.html" %}
+ {% load static %}
+
+ {% block style %}<link type="text/css" rel="stylesheet" href="{% static 'abmsocios/css/socio_list.css' %}"> {% endblock %}
+    {% block sectionHeader %}
+    <i class="ui list icon"></i>
+    Listado de Socios
+    {% endblock %}
+    
+    {% block content %}
+
+    <table class="ui unstackable selectable table">
+                <thead id="table-head">
+                    <tr>
+                        <th class="mobile-hide one wide"></th>
+                        <th>Socio</th>
+                        <th>Numero</th>
+                        <th>Estado</th>
+                        <th class="one wide"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for socio in socio_list %}
+                        <tr class="clickable-row" onclick="window.location = '{% url 'detalle-socio' socio.documento %}'">
+                            <td class="mobile-hide">
+                                {% if socio.foto_perfil %}
+                                        <img class="ui mini circular image mobile-hide" src="{{ socio.foto_perfil.url }}">
+                                    {% else %}
+                                        {% if socio.sexo == "M" %}
+                                            <img class="ui mini circular image mobile-hide " src="../../media/manAvatar.jpg">
+                                        {% else %}
+                                            <img class="ui mini circular image mobile-hide" src="../../media/womanAvatar.jpg">    
+                                        {% endif %}
+                                    {% endif %}
+                            </td>
+                            <td>
+                                <h4 class="ui header">                                  
+                               
+                                <div class="content">
+                                    {{ socio.nombre_completo|title }}
+                                    <div class="sub header">
+                                        {{ socio.documento }}
+                                    </div>
+                                </div>
+                                 </h4>
+                            </td>
+                            <td>{{ socio.numero_socio }}</td>
+                            <td>{{ socio.habilitacion }}</td>
+                            <td>
+                                <div class="ui right floated content">
+                                    <a class="ui mini blue button mobile-hide" href="{% url 'editar-socio' socio.documento %}">
+                                        Editar
+                                    </a>
+                                    <a class="ui mini blue icon button large-hide small-hide tablet-hide" href="{% url 'editar-socio' socio.documento %}">
+                                        <i class="ui write icon"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        {% if is_paginated %}
+                            <th colspan="5">                                
+                                <div class="ui pagination menu">
+                                    {% if page_obj.has_previous %}
+                                    <a class="icon item" href="?page={{ page_obj.previous_obj_number }}">
+                                        <i class="left chevron icon"></i>
+                                    </a>
+                                    {% else %}
+                                        <a class="disabled icon item"><i class="left chevron icon"></i></a>                                
+                                {% endif %}
+                                
+                                {% for page in page_obj.paginator.page_range %}
+                                    <a class="{% if page_obj.number == page %}active{% endif %} item" href="?page={{ page }}">{{ page }}</a>
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                    <a class="icon item" href="?page={{ page_obj.next_page_number }}">
+                                        <i class="right chevron icon"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="disabled icon item"><i class="right chevron icon"></i></a>
+                                {% endif %}
+                                </div>
+                            </th>
+                        {% endif %}
+                    </tr>
+                </tfoot>
+
+            </table>
+           
+    {% endblock %}
+
+
+    {% block javascript %} <script type="javascript" src="{% static 'abmsocios/js/socio_list.js'%}" ></script>  {% endblock %}
+       
+
+
+  

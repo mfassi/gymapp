@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block title %}
+    <title>DKGym</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'Semantic-UI/semantic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base_generic.css' %}"> {% block style %} {% endblock %}
+</head>
+
+<body>
+    
+    {% if user.is_authenticated %}
+    <div class="ui left vertical secondary inverted menu thin sidebar" style="background-color:black;">
+        <div class="item">
+            <div class="ui inverted vertical accordion">
+                <div class="title">
+                    <img class="ui mini avatar circular image" src="../../media/manAvatar.jpg"> 
+                    {{ user.first_name }} {{ user.last_name }}
+                </div>
+                <div class="content">
+                    <a class="item" href="#">Configuracion</a>
+                    <a class="item" href="{% url 'logout' %}">Salir</a>
+                </div>
+            </div>
+        </div>
+        <a class="item" href="{% url 'home' %}">
+                    <span><i class="home icon"></i></span>
+                    Inicio 
+                </a>
+        <a class="item" href="#">
+                    <span><i class="dollar icon"></i></span>
+                    Pagos
+                </a>
+        <div class="item">
+            <div class="ui vertical inverted accordion">
+                <div class="title">
+                    <span><i class="users icon"></i></span> Socios
+                </div>
+                <div class="content">
+                    <a class="item" href="{% url 'creacion-socio' %}">
+                            <span><i class="add user icon"></i></span>
+                            Crear
+                        </a>
+                    <a class="item" href="{% url 'listado-socios' %}">
+                            <span><i class="list icon"></i></span>
+                            Lista
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pusher">
+        <div class="ui grid">
+            <div class="row" id="page">
+                <div class="three wide column computer tablet only" id="menumenu">
+                    <div class="ui secondary left vertical fixed menu ">
+                        <div class="item">
+                            <div class="ui vertical accordion">
+                                <div class="title">
+                                    <img class="ui mini avatar circular image" src="../../media/manAvatar.jpg"> 
+                                    {{user.first_name }} {{ user.last_name }}
+                                </div>
+                                <div class="content">
+                                    <a class="item" href="#">Configuracion</a>
+                                    <a class="item" href="{% url 'logout' %}">Salir</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="item" href="{% url 'home' %}">
+                                <span><i class="home icon"></i></span>
+                                Inicio 
+                        </a>
+
+                        <a class="item" href="{% url 'creacion-socio' %}">
+                            <span>
+                                <i class="add user icon"></i>
+                            </span> 
+                            Nuevo Socio
+                        </a>
+                        <a class="item" href="{% url 'listado-socios' %}">
+                            <span>
+                                <i class="list icon"></i>
+                            </span> 
+                            Listado de Socios
+                        </a>
+                        <a class="item" href="#">
+                                <span><i class="dollar icon"></i></span>
+                                Pagos
+                        </a>
+                        <div class="item">
+                            <div class="ui icon input">
+                                <input type="search" id="busqueda" placeholder="buscar...">
+                                <i class="search icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="thirteen wide computer widescreen largescreen eleven wide tablet sixteen wide mobile centered column" id="content">
+                    <header>
+                        <div class="ui secondary menu" id='responsive-menu'>
+                            <div class="item">
+                                <h3 class="ui header">
+                                    {% block sectionHeader %}{% endblock %}
+                                </h3>
+                            </div>  
+                            <div class="secondary right item large-hide small-hide tablet-hide">
+                            <button class="ui basic icon button" id="sidebar-button">
+                                <i class="ui content icon"></i>   
+                            </button>    
+                            </div>                 
+                        </div>                
+                        <div class="ui divider"></div>
+                    </header>
+                
+                    <div>
+                        {% block content %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="{% static 'js/jquery3.2.1.js' %}"></script>
+    <script src="{% static 'Semantic-UI/semantic.js' %}"></script>
+    <script src="{% static 'js/cookie.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
+    {% block javascript %} {% endblock %} {% endif %}
+
+</body>
+
+</html>

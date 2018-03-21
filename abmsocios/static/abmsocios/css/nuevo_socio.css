@@ -1,0 +1,53 @@
+img {
+    object-fit: cover;
+}
+
+#id_foto_perfil {
+    display: none;
+}
+
+#perfil {
+    position: center;
+}
+#perfil:hover {
+    cursor: pointer;
+}
+
+#crear_usuario {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.checkbox{
+    position: absolute;
+    left: 25%;
+    top: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .checkbox {
+        left: 0%;
+        top: 25%;
+        bottom: 10% 
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 990px) {
+    .checkbox {
+        left: 0%;
+    }
+}
+
+
+@media only screen and (min-width: 500px) and (max-width: 768px) {
+    .ui.pointing.blue.basic.label {
+        display: block;
+        position: relative;
+        left: 25%;
+        width: 50%;
+
+    }
+}
+
+
+

@@ -1,0 +1,303 @@
+{% extends 'base_generic.html' %} 
+{% load static %}
+{% block style %} <link type="text/css" rel="stylesheet" href="{% static 'abmsocios/css/editar_socio.css' %}"> {% endblock %}
+{% block sectionHeader %} {{ nombre_completo|title }} {% endblock %} {% block content %}
+
+
+<form class="ui form" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="ui grid">    
+            <div id="detallesSocio"class="centered column">
+                {% if foto_perfil %}
+                    <img class="ui small centered circular image" src="{{ foto_perfil.url }}">
+                {% else %}
+                    {% if socio.sexo.value == 'M' %}
+                    <img class="ui small centered circular image" src="../../media/manAvatar.jpg">
+                    {% elif socio.sexo.value == 'F' %}
+                    <img class="ui small centered circular image" src="../../media/womanAvatar.jpg">
+                    {% endif %}
+                {% endif %}
+                <div class="ui center aligned container">
+                    <p>Socio Nº {{ numero_socio }}
+                    </p>  
+                </div>
+
+                    <div class="ui grid">
+                        <div class="twelve wide centered column">
+                        <div class="two fields">
+                            <div class="field">
+                                {{ socio.fecha_inscripcion.errors }}
+                                {{ socio.fecha_inscripcion.label_tag }}
+                                {{ socio.fecha_inscripcion }}
+                            </div>
+                            <div class="inline field">
+                                <div class="ui toggle checkbox">
+                                    {{ socio.estado.errors }}
+                                    <label for="estado">Estado</label>
+                                    {{ socio.estado }}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="two fields">            
+                            <div class="field">
+                                {{ socio.fecha_apto.errors }}
+                                {{ socio.fecha_apto.label_tag }}
+                                {{ socio.fecha_apto }}
+                            </div>
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    {{ socio.apto_fisico.errors }}
+                                    {{ socio.apto_fisico.label_tag }}
+                                    {{ socio.apto_fisico }}
+                                </div>
+                            </div>     
+                        </div>                       
+                    </div>
+                </div>
+            
+                <div class="detailTab ui top attached tabular fluid three item menu">                
+                    <a class="active item" id='PersonalTab' data-tab='informacion'>
+                        Informacion
+                    </a>
+                    <a class="item" id='ContactoTab' data-tab='pagos'>
+                        Pagos
+                    </a>
+                    <a class="item" id='ContactoTab' data-tab='ingresos'>
+                        Ingresos
+                    </a>
+                </div>
+                <div class="ui active tab basic segment" data-tab='informacion'>
+                    <div class="ui stackable grid container">
+                            
+                                
+                            <div class="eight wide computer sixteen wide tablet mobile column" id="infoPersonal">
+                                <h3 class="ui header">
+                                    <i class="user icon"></i>
+                                    <div class="content">
+                                        Personal
+                                    </div>
+                                </h3>
+                                <div class="ui divider"></div>
+                                <div class="field">
+                                    {{ socio.nombre.errors }}
+                                    {{ socio.nombre.label_tag }}
+                                    {{ socio.nombre }}
+                                </div>
+                                <div class="field">
+                                    {{ socio.foto_perfil }}
+                                </div>
+                                <div class="field">
+                                    {{ socio.apellido.errors }}
+                                    {{ socio.apellido.label_tag }}
+                                    {{ socio.apellido }}
+                                </div>
+                                <div class="field">
+                                    {{ socio.fecha_nacimiento.errors }}
+                                    {{ socio.fecha_nacimiento.label_tag }}
+                                    {{ socio.fecha_nacimiento }}
+                                </div>
+                                <div class="field">
+                                    {{ socio.documento.errors }}
+                                    {{ socio.documento.label_tag }}
+                                    {{ socio.documento }}
+                                </div>
+                                <div class="field">
+                                    {{ socio.sexo.errors }}
+                                    {{ socio.sexo.label_tag }}
+                                    {{ socio.sexo }} 
+                                </div>
+                                <div class="field">
+                                    {{ socio.correo.errors }}
+                                    {{ socio.correo.label_tag }}
+                                    {{ socio.correo }}
+                                </div>
+
+
+                            </div>  
+                            <div class="eight wide computer sixteen wide tablet mobile column">
+                                <h3 class="ui header">
+                                    <i class="heartbeat icon"></i>
+                                    <div class="content">
+                                        Datos Medicos
+                                    </div>
+                                </h3>
+                                <div class="ui divider"></div>
+                                <div class="two stackable fields">
+                                    <div class="field">
+                                        {{ datos_medicos.obra_social.errors }}
+                                        {{ datos_medicos.obra_social.label_tag }}
+                                        {{ datos_medicos.obra_social }}
+                                    </div>
+                                    <div class="field">
+                                        {{ datos_medicos.os_plan.errors }}
+                                        {{ datos_medicos.os_plan.label_tag }}
+                                        {{ datos_medicos.os_plan }}
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    {{ datos_medicos.osNumero_socio.errors }}
+                                    {{ datos_medicos.osNumero_socio.label_tag }}
+                                    {{ datos_medicos.osNumero_socio }}
+                                </div>
+                                <div class="field">
+                                    {{ datos_medicos.contacto_urgencia.errors }}
+                                    {{ datos_medicos.contacto_urgencia.label_tag }}
+                                    {{ datos_medicos.contacto_urgencia }}
+                                </div>
+                                <div class="field">
+                                    {{ datos_medicos.contacto_parentesco.errors }}
+                                    {{ datos_medicos.contacto_parentesco.label_tag }}
+                                    {{ datos_medicos.contacto_parentesco }}
+                                </div>
+                                <div class="field">
+                                    {{ datos_medicos.numero_urgencia.errors }}
+                                    {{ datos_medicos.numero_urgencia.label_tag }}
+                                    {{ datos_medicos.numero_urgencia }}
+                                </div>
+
+                            </div> 
+
+                            <div class="sixteen wide column"> 
+                                <h3 class="ui header">
+                                    <i class="icon"></i>
+                                    <div class="content">
+                                        Domicilios
+                                    </div>
+                                </h3>
+                                {{ domicilio.management_form }}
+                                <div class="ui divider"></div>
+                                    {% for d in domicilio %}
+                                   <!-- <div class="ui horizontal divider">
+                                        {% if d.tipo.value == 'LB' %}
+                                            Laboral
+                                        {% else %}
+                                            Personal
+                                        {% endif %}     
+                                    </div>-->
+
+                                    
+                                    <div class="fields">
+                                        <div class="seven wide field">
+                                            {{ d.calle.errors }}
+                                            {{ d.calle.label_tag }}
+                                            {{ d.calle }}
+                                        </div>
+                                        <div class="three wide field">
+                                            {{ d.numero.errors }}
+                                            {{ d.numero.label_tag }}
+                                            {{ d.numero }}
+                                        </div>
+                                        <div class="three wide field">
+                                            {{ d.piso.errors }}
+                                            {{ d.piso.label_tag }}
+                                            {{ d.piso }}
+                                        </div>
+                                        <div class="three wide field">
+                                            {{ d.departamento.errors }}
+                                            {{ d.departamento.label_tag }}
+                                            {{ d.departamento }}
+                                        </div>
+                                    </div>
+                                    <div class="fields">
+                                        <div class="six wide field">
+                                            {{ d.barrio.errors }}
+                                            {{ d.barrio.label_tag }}
+                                            {{ d.barrio }}
+                                        </div>
+                                        <div class="five wide field">
+                                            {{ d.localidad.errors }}
+                                            {{ d.localidad.label_tag }}
+                                            {{ d.localidad }}
+                                        </div>
+                                        <div class="five wide field">
+                                            {{ d.provincia.errors }}
+                                            {{ d.provincia.label_tag }}
+                                            {{ d.provincia }}
+                                        </div>
+                                    </div>
+                                    <div class="two fields">
+                                        <div class="field">
+                                            {{ d.codigo_postal.errors }}
+                                            {{ d.codigo_postal.label_tag }}
+                                            {{ d.codigo_postal }}
+                                        </div>
+                                        <div class="field">
+                                            {{ d.tipo.errors }}
+                                            {{ d.tipo.label_tag }}
+                                            {{ d.tipo }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>   
+                        
+                      <!--      
+
+                            <div class="sixteen wide column"> 
+                                <h3 class="ui header">
+                                    <i class="phone icon"></i>
+                                    <div class="content">
+                                        Contacto
+                                    </div>
+                                </h3>
+                                <div class="ui divider">
+                                   
+                                </div>
+                                    <div class="field">
+                                        {{ socio.correo.errors }}
+                                        {{ socio.correo.label_tag }}
+                                        {{ socio.correo }}
+                                    </div>
+                                    {{ telefono.management_form }}
+                                    {% for t in telefono %}
+                                        <div class="ui horizontal divider">
+                                             {% if t.tipo.value == 'LB' %}
+                                            Laboral
+                                    {% else %}
+                                            Personal
+                                    {% endif %}    
+                                        </div>
+                                        <div class="fields">
+                                            <div class="nine wide desktop one wide mobile field">
+                                            {{ t.numero.errors }}
+                                            {{ t.numero.label_tag }}
+                                            {{ t.numero }}
+                                            </div>
+                                             <div class="five wide field">
+                                            {{ t.tipo.errors }}
+                                            {{ t.tipo.label_tag }}
+                                            {{ t.tipo }}                                            
+                                            </div>
+                                            <div class="field" id="remove-button">
+                                                {{ t.DELETE }}
+                                                <button class="ui negative icon button celButton" type="button" onclick="borrarElemento()">
+                                                    <i class="ui remove icon"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                                     
+                                   -->                  
+                    <input type="submit" action="" class="ui button">
+                </div>
+            </div>   
+        </div>
+    </div>
+    </div>
+</form>
+                <div class="ui tab basic segment" data-tab='pagos'>
+                        
+                </div>
+                <div class="ui tab basic segment" data-tab='ingresos'>
+                    
+                </div>
+
+            
+
+
+    {% endblock %}
+    {% block javascript %}
+        <script type="text/javascript" src="{% static 'abmsocios/js/editar_socio.js' %}"></script>
+    {% endblock %}

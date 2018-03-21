@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+    <html>
+        <head>
+            {% block title %}{% endblock %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <link rel="stylesheet" type="text/css" href="{% static 'Semantic-UI/semantic.css' %}">
+            <link rel="stylesheet" href="{% static 'css/login_generic.css' %}">
+            <link rel="icon" href="{% static 'themes/default/assets/fonts/icons.woff2' %}">
+            <link rel="icon" href="{% static 'themes/default/assets/fonts/icons.woff' %}">
+            <link rel="icon" href="{% static 'themes/default/assets/fonts/icons.ttf' %}">
+            <link rel="icon" href="{% static 'themes/default/assets/fonts/icons.svg' %}">
+            {% block style %}{% endblock %}
+
+
+
+        </head>
+        
+        
+        <body>
+
+         <div class="page-content">
+             <img src="../../static/pesas2.jpg">
+         </div>
+           
+        
+             
+        
+
+            <div class="ui middle aligned center aligned grid">
+                
+
+                                
+               
+                <div class="column">
+
+                    
+                
+            {% block content %}
+
+
+            {% endblock %}
+                </div>
+            </div>
+
+            
+      
+            
+            <script src="{% static 'js/jquery3.2.1.js' %}"></script>        
+            <script src="{% static 'Semantic-UI/semantic.js' %}"></script>
+            <script src="{% static 'js/login_generic.js' %}"></script>  
+            
+            {% block javascript %} {% endblock %}
+            
+        </body>
+
+    </html>

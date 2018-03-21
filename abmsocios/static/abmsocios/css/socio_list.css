@@ -1,0 +1,7 @@
+.clickable-row {
+    cursor: pointer;    
+}
+
+.ui.pagination.menu {
+    position: center;
+}

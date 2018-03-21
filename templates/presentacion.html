@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/reveal.css'%}" >
+        <link rel="stylesheet" type="text/css" href="{% static 'css/night.css' %}" >
+        <link rel="stylesheet" type="text/css" href="{% static 'css/presentation.css' %}" >
+    </head>
+
+    <body>
+
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <section><h1 class="app header">GYM APP</h1></section>
+                    <section>
+                        <h2>Martin Fassi</h2>
+                        <p>Linkedin:</p>
+                        <a href="https://www.linkedin.com/in/martin-fassi-037492121/">https://www.linkedin.com/in/martin-fassi-037492121/</a>
+                        <p>GitHub</p>
+                        <a href="https://github.com/mfassi">https://github.com/mfassi</a>
+                    </section>
+                </section>
+                <section>
+                        <section>              
+                        <h2>Dirgida a gimnasios</h2>
+                        <p>La aplicacion fue solicitada por un gimnasio 
+                            pero la idea es que pueda ser utilizada por varios mas</p>
+                        </section>
+                    <section>
+                        <h2>Administracion de informacion</h2>
+                        <p>La funcion principal de la aplicacion es la administracion 
+                            de toda la informacion que el establecimiento requiere para 
+                            llevar a cabo sus actividades.
+                        </p>
+                    </section>
+                <section>
+                        <h2>No mas registros en papel</h2>
+                        <p>Se acabaron las fichas de socios realizadas a mano.
+                            La aplicacion se encarga de llevar todos estos registros. Incluso
+                            permite cruzar dicha informacion con la de pagos por ejempleo, pudiendo
+                            saber si el usuario esta al dia con su cuota.
+                        </p>
+                </section>   
+                    
+                </section>
+               
+                    <section data-background-video="{% static 'videos/login.mov' %}" data-background-video-mute="true" class="explicacion">
+                            
+                        <span class="fragment fade-out" data-autoslide="5000">    
+                            <h2>Sistema de autenticacion</h2>
+                            <p>
+                                La aplicacion cuenta con un sistema de autenticacion
+                                en la que cada miembro del staff tiene su propio perfil
+                                para acceder a la aplicacion.
+                            </p> 
+
+                        </span>
+                    </section>
+                    <section data-background-video="{% static 'videos/usuarios.mov' %}" data-background-vide-mute="true" class"explicacion" data-autoslide="1000">
+                        
+                        
+                        <span class="fragment fade-out" data-autoslide="5000">
+                            <h2 style="color:black;">Registro de socio</h2>
+                            <p style="color:black;">
+                                El registro de socios permite agregar, editar y eliminar usuarios.</p>
+                                <p style="color:black;">Las lista permiten acceder a los detalles de cada uno de ellos y proximamente
+                                incluiran filtros.</p>
+                                <p style="color:black;">La busqueda todavia se encuentra en desarrollo</p>                            
+                        </span>
+
+                    </section>
+
+
+                    <section data-background-video="{% static 'videos/responsive.mov' %}" data-background-vide-mure="true" class="explicacion" data-autoslide="1000">
+                        
+                        <span class="fragment fade-out" data-autoslide="5000">
+                            <h2 style="color:black">Es responsive</h2>
+                            <p style="color:black"> Permitiendo acceder a la aplicacion desde cualquier dispositivo</p>
+                        </span>
+                    </section>
+
+                    <section>
+                        <h1>Preguntas</h1>
+                    </section>
+                    
+            
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{% static 'js/reveal.js' %}" ></script>
+        <script>
+            Reveal.initialize({
+                mouseWheel: true,
+            });
+        </script>
+    </body>
+
+
+</html>

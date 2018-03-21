@@ -1,0 +1,21 @@
+@font-face {
+  font-family: appTitle;
+  src: url(title2.ttf);
+}
+
+.app.header,
+.ui.raised.segment {
+  display: none;
+}
+
+h3.app.header {
+    font-family: appTitle;
+    font-size: 500%;
+    color: #4b73a0;
+}
+
+@media only screen and (max-width: 768px) {
+  .app.header{
+    font-size: 400%;
+  }
+}

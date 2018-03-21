@@ -1,0 +1,150 @@
+{% extends 'base_generic.html' %} {% load static %} {% block style %}
+<link type="text/css" rel="stylesheet" href="{% static 'abmsocios/css/socio_detail.css' %}"> {% endblock %} {% block sectionHeader %} {{ socio.nombre_completo|title }} {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="ui grid">
+        <div class="centered column">
+            <div class="ui center aligned container">
+            {% if socio.foto_perfil %}
+            <div class="ui small circular image">
+                <img src="{{ socio.foto_perfil.url }}" id='foto_perfil'>
+            </div>
+            {% else %} 
+                {% if socio.sexo == 'M' %}
+                    <img class="ui small centered circular image" src="../../media/manAvatar.jpg"> 
+                {% elif socio.sexo == 'F' %}
+                    <img class="ui small centered circular image" src="../../media/womanAvatar.jpg"> 
+                {% endif %} 
+            {% endif %}
+            </div>
+            <div class="ui center aligned container">
+                <p>{{ socio.nombre|capfirst }} es el socio Nº {{ socio.numero_socio }} y se inscribio el {{ socio.fecha_inscripcion}}<br
+                    /> {% if socio.apto_fisico %} El ultimo apto fisico fue realizado el {{ socio.fecha_apto }} {% else %}
+                    No presento el apto fìsico. {% endif %}
+                </p>
+            </div>
+            <div id="detallesSocio">
+                <div class="detailTab ui top attached tabular fluid three item menu">
+                    <a class="active item" id='PersonalTab' data-tab='informacion'>
+                    Informacion
+                </a>
+                    <a class="item" id='ContactoTab' data-tab='pagos'>
+                    Pagos
+                </a>
+                    <a class="item" id='ContactoTab' data-tab='ingresos'>
+                    Ingresos
+                </a>
+                </div>
+                <div class="ui active tab basic segment" data-tab='informacion'>
+                <div class="row">
+                    <div class="ui two column stackable grid container">
+                        
+                        <div class="info column" id="infoPersonal">
+                            <h3 class="ui header">
+                                <i class="user icon"></i>
+                                <div class="content">
+                                    Personal
+                                </div>
+                            </h3>
+                            <div class="ui divider"></div>
+                            <p>Nombres: {{ socio.nombre|title }}</p>
+                            <p>Apellidos: {{ socio.apellido|title }}</p>
+                            <p>Fecha de Nacimiento: {{socio.fecha_nacimiento}}</p>
+                            <p>Documento: {{ socio.documento }}</p>
+                            <p>Sexo: {{ socio.get_sexo_display }}</p> 
+                        </div>
+                        
+                        <div class="column test">
+                            <h3 class="ui header">
+                                <i class="heartbeat icon"></i>
+                                <div class="content">
+                                    Datos Medicos
+                                </div>
+                            </h3>
+                            <div class="ui divider"></div>
+                                {% if datos_medicos %}
+                                <p>Obra Social: {{ datos_medicos.obra_social|capfirst }}</p>
+                                <p>Numero de Socio: {{ datos_medicos.osNumero_socio }}</p>
+                                <p>Plan: {{ datos_medicos.os_plan }}</p>
+                                <p>Contacto de Urgencia: {{ datos_medicos.contacto_urgencia|title }}</p>
+                                <p>Parentesco: {{ datos_medicos.contacto_parentesco|capfirst }}</p>
+                                <p>Telefono: {{ datos_medicos.numero_urgencia }}</p>
+                                {% else %}
+                                <p>El socio no tiene datos medicos asociados.</p>
+                                {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="ui two column stackable grid container">
+                        
+                        <div class="column"> 
+                            <h3 class="ui header">
+                                <i class="phone icon"></i>
+                                <div class="content">
+                                    Contacto
+                                </div>
+                            </h3>
+                            <div class="ui divider"></div>
+                                <p>Email: {{ socio.correo }}</p>
+                                {% if telefonos %}
+                                {% for t in telefonos %}
+                                    <p>Telefono {{ t.get_tipo_display }}: {{ t.numero }} </p>
+                                {% endfor %}
+                                {% else %}
+                                    <p>El socio no tiene telefonos registrados </p>
+                                {% endif %}
+                        </div>
+                       
+                        <div class="column"> 
+                            <h3 class="ui header">
+                                <i class="icon"></i>
+                                <div class="content">
+                                    Domicilios
+                                </div>
+                            </h3>
+                            <div class="ui divider"></div>
+                            {% if domicilios %}
+                                {% for d in domicilios %}
+                                    <p>Calle: {{ d.calle|capfirst }}</p>
+                                    <p>Numero: {{ d.numero }} </p>
+                                    {% if d.piso %}
+                                        <p>Piso: {{ d.piso }}</p>
+                                    {% endif %}
+                                    {% if d.departamento %}
+                                        <p>Dpto: {{ d.departamento }}</p>
+                                    {% endif %}
+                                    <p>Barrio: {{ d.barrio|capfirst }}</p>
+                                    <p>Localidad: {{ d.localidad|title }}</p>
+                                    <p>CP: {{ d.codigo_postal }}</p>
+                                    <p>Provincia: {{ d.provincia|capfirst }}</p>
+                                    <p>Tipo: {{ d.get_tipo_display }}</p>
+                                {% endfor %}
+                                {% else %}
+                                <p>El socio no tiene ningun domicilio registrado.</p>
+                            {% endif %}        
+                        </div>
+                    </div> 
+                    <button class="ui button"><a href="{% url 'editar-socio' socio.documento %}">Editar</a></button>
+                </div>
+                </div>
+
+                <div class="ui tab basic segment" data-tab='pagos'>
+
+                </div>
+                <div class="ui tab basic segment" data-tab='ingresos'>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %} {% block javascript %}
+<script type="text/javascript" src="{% static 'abmsocios/js/socio_detail.js' %}"></script>
+{% endblock %}

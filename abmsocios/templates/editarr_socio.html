@@ -1,0 +1,75 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+
+<!--
+<form enctype="multipart/form-data" action="" method="POST">
+{% csrf_token %}
+{{ socio }}
+{{ datos_medicos }}
+
+<input type="submit">
+</form>
+-->
+
+<form method="POST" enctype="multipart/form-data" class="ui form" >
+    {% csrf_token %}
+    <div class="fields">
+        <div class="field">
+            {{ socio.nombre }}
+        </div>
+        <div class="field">
+            {{ socio.apellido }}
+        </div>
+    </div>
+    <div class="field">
+        {{ socio.foto_perfil }}
+    </div>
+    <div class="field">
+        {{ socio.documento }}
+    </div>
+    <div class="field">
+        {{ socio.correo }}
+    </div>
+    <div class="field">
+        {{ socio.fecha_nacimiento }}
+    </div>
+    <div class="field">
+        {{ socio.sexo }}    
+    </div>    
+    <div class="field">
+        {{ socio.apto_fisico }}
+    </div>
+    <div class="field">
+        {{ socio.fecha_apto }}    
+    </div>
+    <div class="field">
+        {{ socio.fecha_inscripcion }}    
+    </div> 
+    <div class="field">
+        {{ socio.estado }}
+    </div>
+    
+    <div class="field">
+        {{ datos_medicos.obra_social }}
+    </div>
+    <div class="field">
+        {{ datos_medicos.osNumero_socio }}
+    </div>
+    <div class="field">
+        {{ datos_medicos.os_plan }}
+    </div>
+    <div class="field">
+        {{ datos_medicos.contacto_urgencia }}
+    </div>
+    <div class="field">
+        {{ datos_medicos.contacto_parentesco }}
+    </div>
+    <div class="field">
+        {{ datos_medicos.numero_urgencia }}
+    </div>
+
+    <input type="submit" class="ui button">
+</form>
+
+
+{% endblock %}

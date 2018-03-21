@@ -1,0 +1,19 @@
+@font-face {
+    font-family: appTitle;
+    src: url(title2.ttf);
+}
+
+h1.app.header {
+    font-family: appTitle;
+    color: #4b73a0;
+}
+
+section > h3,
+section > h3 p{
+    color: black;
+}
+
+.explicacion span >h2,
+.explicacion span >p {
+    color: black;
+}

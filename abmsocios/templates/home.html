@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %} {% load static %} {% block title %}
+<title>Dkgym - Dashboard</title>{% endblock %} {% block style %}
+<link type="text/css" rel="stylesheet" href="{% static 'abmsocios/css/home.css' %}"> {% endblock %} {% block sectionHeader %} 
+                            <i class="ui home icon"></i> Inicio {% endblock %} {% block content %}
+
+
+<div class="row">
+    <div class="ui three column stackable grid ">
+            <div class="column">
+                <div class="ui centered card">
+                    <div class="content">
+                        <div class="ui horizontal statistics">
+                            <div class="statistic">
+                                <div class="value">
+                                    {{ num_socios }}
+                                </div>
+                                <div class="label">
+                                    Socios inscriptos
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui centered card">
+                    <div class="content">
+                        <div class="ui horizontal statistics">
+                            <div class="statistic">
+                                <div class="value" id="statistic-value">
+                                    {{ num_socios_activos }}
+                                </div>
+                                <div class="label">
+                                    Socios activos
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui centered card">
+                    <div class="content">
+                        <div class="ui horizontal statistics">
+                            <div class="statistic">
+                                <div class="value">
+                                    {{ num_socios_inactivos }}
+                                </div>
+                                <div class="label">
+                                    Socios inactivos
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+   
+</div>
+{% endblock %}
